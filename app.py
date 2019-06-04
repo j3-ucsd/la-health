@@ -2,6 +2,7 @@ import os
 
 import pandas as pd
 import numpy as np
+import json 
 
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
@@ -160,7 +161,53 @@ def scoring_data():
     # print(scoring_data)
     return jsonify(scoring_data_list)
 
+@app.route("/best")
+def best_data():
+    engine = create_engine('sqlite:///data/los_angeles.db')
+    bestList = []
+    with engine.connect() as con:
+        rs = con.execute('SELECT DISTINCT losangeles.facility_name,losangeles.facility_address, losangeles.facility_city, losangeles.facility_state, losangeles.facility_zip,losangeles.score FROM losangeles ORDER BY losangeles.score DESC LIMIT 10;')
+        for row in rs:
+            best = {}
+            best['facility_name'] = row[0]
+            best['facility_address'] = row[1]
+            best['facility_city'] = row[2]
+            best['facility_state'] = row[3]
+            best['facility_zip'] = row[4]
+            best['score'] = row[5]
+            bestList.append(best)
+    return jsonify(bestList)
 
+@app.route("/worst")
+def worst_data():
+    engine = create_engine('sqlite:///data/los_angeles.db')
+    worstList = []
+    with engine.connect() as con:
+        rs = con.execute('SELECT DISTINCT losangeles.facility_name,losangeles.facility_address, losangeles.facility_city, losangeles.facility_state, losangeles.facility_zip,losangeles.score FROM losangeles ORDER BY losangeles.score ASC LIMIT 10;')
+        for row in rs:
+            worst = {}
+            worst['facility_name'] = row[0]
+            worst['facility_address'] = row[1]
+            worst['facility_city'] = row[2]
+            worst['facility_state'] = row[3]
+            worst['facility_zip'] = row[4]
+            worst['score'] = row[5]
+            worstList.append(worst)
+    return jsonify(worstList)
+
+@app.route("/frequent-violations")
+def violation_data():
+    engine = create_engine('sqlite:///data/los_angeles.db')
+    violationList = []
+    with engine.connect() as con:
+        rs = con.execute('SELECT violation_description, violation_code, COUNT(*) FROM losangeles GROUP BY violation_description ORDER BY COUNT(*) DESC LIMIT 10;')
+        for row in rs:
+            violation = {}
+            violation['violation_description'] = row[0]
+            violation['violation_code'] = row[1]
+            violation['count'] = row[2]
+            violationList.append(violation)
+    return jsonify(violationList)
 
 if __name__ == "__main__":
     app.run()
