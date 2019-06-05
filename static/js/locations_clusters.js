@@ -23,7 +23,7 @@ console.log(scoring_data)
 d3.json(locations_data, 
   function(locationsRes)
   {
-    console.log(locationsRes[1])
+    console.log(locationsRes)
     // Grab the scoring data via d3.json
     d3.json(scoring_data,
     function(scoringRes)
