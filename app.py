@@ -116,7 +116,7 @@ def location_data():
     ]
 
     ys = db.session.query(*sel).all()
-
+    engine = create_engine('sqlite:///data/los_angeles.db')
     # Create a dictionary entry for each row of metadata information
     location_data_list = []
     for y in ys:
@@ -129,6 +129,12 @@ def location_data():
         location_data["facility_zip"] = y[5]
         location_data["lat"] = y[6]
         location_data["lng"] = y[7]
+        
+        with engine.connect() as con:
+            rs = con.execute("SELECT facility_name FROM losangeles WHERE `facility_id`='"+ location_data["facility_id"] +"' LIMIT 1;")
+            for row in rs:
+                location_data["facility_name"]=row[0]
+
         location_data_list.append(location_data)
 
     # print(location_data)
@@ -164,7 +170,7 @@ def best_data():
     engine = create_engine('sqlite:///data/los_angeles.db')
     bestList = []
     with engine.connect() as con:
-        rs = con.execute('SELECT DISTINCT losangeles.facility_name,losangeles.facility_address, losangeles.facility_city, losangeles.facility_state, losangeles.facility_zip,losangeles.score FROM losangeles ORDER BY losangeles.score DESC LIMIT 5;')
+        rs = con.execute('SELECT DISTINCT losangeles.facility_name,losangeles.facility,losangeles.facility_address, losangeles.facility_city, losangeles.facility_state, losangeles.facility_zip,losangeles.score FROM losangeles ORDER BY losangeles.score DESC LIMIT 5;')
         for row in rs:
             best = {}
             best['facility_name'] = row[0]

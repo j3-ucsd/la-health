@@ -18,7 +18,14 @@ body {
         height: 33px;
      text-align: center;    
     padding-top: 6px;
-    font-size: 15px;}
+    font-size: 15px; color:#FFFFFF;}
   div#top-scores h5 strong{ background-color:#0f1ddd; }
   div#worst-scores h5 strong{ background-color:#dd0f18; }
-  div#pop-violations h5 strong{ background-color:#000000; }
+  div#pop-violations h5 strong{ background-color: #000000;
+    float: left;
+    width: 20%;
+    margin-right: 3%;
+    border-radius: 0; }
+    div#pop-violations h5 section{ float: right; width: 75%; font-size: 14px;}
+    div#pop-violations div{ padding-bottom: 20px; margin-bottom: 20px;}
+    div#pop-violations div:after{clear: both; display: block; content: '';}
