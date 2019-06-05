@@ -11,3 +11,14 @@ body {
    #map{height:500px; max-height:500px;} */
 
   .container-fluid{ margin-top:70px; }
+
+  div.lists h5 strong{ border-radius: 50%;
+    width: 34px;
+        display: inline-block;
+        height: 33px;
+     text-align: center;    
+    padding-top: 6px;
+    font-size: 15px;}
+  div#top-scores h5 strong{ background-color:#0f1ddd; }
+  div#worst-scores h5 strong{ background-color:#dd0f18; }
+  div#pop-violations h5 strong{ background-color:#000000; }

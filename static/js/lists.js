@@ -20,7 +20,7 @@ d3.json('/worst', function (dataWorst) {
 d3.json('/frequent-violations', function (dataPop) {
     dl =  d3.select('#pop-violations').append('div')
     for(var key in dataPop) {
-        dl.append('div').html('<h4><strong>'+dataPop[key]['count']+'</strong></h4><p>&nbsp;'+dataPop[key]['violation_description'] +'</p>');
+        dl.append('div').html('<h5><strong>'+dataPop[key]['count']+'</strong>&nbsp;'+dataPop[key]['violation_description'] +'</h5>');
         // console.log(dataBest[key]['facility_name']);
     }
 });
