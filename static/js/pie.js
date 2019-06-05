@@ -45,6 +45,7 @@ setTimeout(function(){
     
 
     var layout = {
+        title: "Percentage of Grades During July 2018 Inspections",
       };
     var data = [trace];
     Plotly.newPlot('pie', data,layout);
