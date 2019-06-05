@@ -170,8 +170,8 @@ def best_data():
     engine = create_engine('sqlite:///data/los_angeles.db')
     bestList = []
     with engine.connect() as con:
-        rs = con.execute('SELECT DISTINCT losangeles.facility_name,losangeles.facility,losangeles.facility_address, losangeles.facility_city, losangeles.facility_state, losangeles.facility_zip,losangeles.score FROM losangeles ORDER BY losangeles.score DESC LIMIT 5;')
-        for row in rs:
+        bs = con.execute('SELECT DISTINCT losangeles.facility_name,losangeles.facility_address, losangeles.facility_city, losangeles.facility_state, losangeles.facility_zip,losangeles.score FROM losangeles ORDER BY losangeles.score DESC LIMIT 5;')
+        for row in bs:
             best = {}
             best['facility_name'] = row[0]
             best['facility_address'] = row[1]
