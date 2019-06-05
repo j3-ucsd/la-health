@@ -164,7 +164,7 @@ def best_data():
     engine = create_engine('sqlite:///data/los_angeles.db')
     bestList = []
     with engine.connect() as con:
-        rs = con.execute('SELECT DISTINCT losangeles.facility_name,losangeles.facility_address, losangeles.facility_city, losangeles.facility_state, losangeles.facility_zip,losangeles.score FROM losangeles ORDER BY losangeles.score DESC LIMIT 10;')
+        rs = con.execute('SELECT DISTINCT losangeles.facility_name,losangeles.facility_address, losangeles.facility_city, losangeles.facility_state, losangeles.facility_zip,losangeles.score FROM losangeles ORDER BY losangeles.score DESC LIMIT 5;')
         for row in rs:
             best = {}
             best['facility_name'] = row[0]
@@ -181,7 +181,7 @@ def worst_data():
     engine = create_engine('sqlite:///data/los_angeles.db')
     worstList = []
     with engine.connect() as con:
-        rs = con.execute('SELECT DISTINCT losangeles.facility_name,losangeles.facility_address, losangeles.facility_city, losangeles.facility_state, losangeles.facility_zip,losangeles.score FROM losangeles ORDER BY losangeles.score ASC LIMIT 10;')
+        rs = con.execute('SELECT DISTINCT losangeles.facility_name,losangeles.facility_address, losangeles.facility_city, losangeles.facility_state, losangeles.facility_zip,losangeles.score FROM losangeles ORDER BY losangeles.score ASC LIMIT 5;')
         for row in rs:
             worst = {}
             worst['facility_name'] = row[0]
@@ -198,7 +198,7 @@ def violation_data():
     engine = create_engine('sqlite:///data/los_angeles.db')
     violationList = []
     with engine.connect() as con:
-        rs = con.execute('SELECT violation_description, violation_code, COUNT(*) FROM losangeles GROUP BY violation_description ORDER BY COUNT(*) DESC LIMIT 10;')
+        rs = con.execute('SELECT violation_description, violation_code, COUNT(*) FROM losangeles GROUP BY violation_description ORDER BY COUNT(*) DESC LIMIT 5;')
         for row in rs:
             violation = {}
             violation['violation_description'] = row[0]
