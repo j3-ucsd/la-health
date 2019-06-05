@@ -106,7 +106,6 @@ def location_data():
     """Return the MetaData for a given data."""
     sel = [
         Locations.index,
-        Locations.row_id,
         Locations.facility_address,
         Locations.facility_city,
         Locations.facility_id,
@@ -123,14 +122,13 @@ def location_data():
     for y in ys:
         location_data = {}
         location_data["index"] = y[0]
-        location_data["row_id"] = y[1]
-        location_data["facility_address"] = y[2]
-        location_data["facility_city"] = y[3]
-        location_data["facility_id"] = y[4]
-        location_data["facility_state"] = y[5]
-        location_data["facility_zip"] = y[6]
-        location_data["lat"] = y[7]
-        location_data["lng"] = y[8]
+        location_data["facility_address"] = y[1]
+        location_data["facility_city"] = y[2]
+        location_data["facility_id"] = y[3]
+        location_data["facility_state"] = y[4]
+        location_data["facility_zip"] = y[5]
+        location_data["lat"] = y[6]
+        location_data["lng"] = y[7]
         location_data_list.append(location_data)
 
     # print(location_data)
