@@ -13,19 +13,19 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 }).addTo(myMap);
 
 // Assign variable for data source (e.g. assemble via API query URL)
-var locations_data = "data/locations.csv"
+var locations_data = "/locations"
 console.log(locations_data)
 
-var scoring_data = "data/scoring.csv"
+var scoring_data = "/scoring"
 console.log(scoring_data)
 
-// Grab the locations data via d3.csv
-d3.csv(locations_data, 
+// Grab the locations data via d3.json
+d3.json(locations_data, 
   function(locationsRes)
   {
-    console.log(locationsRes[1])
-    // Grab the scoring data via d3.csv
-    d3.csv(scoring_data,
+    console.log(locationsRes)
+    // Grab the scoring data via d3.json
+    d3.json(scoring_data,
     function(scoringRes)
     {
     console.log(scoringRes[39])
