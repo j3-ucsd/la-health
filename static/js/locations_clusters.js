@@ -92,6 +92,7 @@ for (var i = 0; i < locationsRes.length; i++) {
     markers.addLayer(L.marker([lat, lng], {icon: icons[scoreIcon]})
     .bindPopup(	
         `Grade: ${restaurant.grade} Scoring: ${restaurant.score}<br>
+        Facility Name: ${restaurant.facility_name}<br>
         Facility ID: ${restaurant.facility_id}<br>
         Address: ${restaurant.facility_address}<br>
         ${restaurant.facility_city}, ${restaurant.facility_state} 
