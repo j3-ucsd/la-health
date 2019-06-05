@@ -14,21 +14,21 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 
 // Assign variable for data source (e.g. assemble via API query URL)
 var locations_data = "/locations"
-console.log(locations_data)
+// console.log(locations_data)
 
 var scoring_data = "/scoring"
-console.log(scoring_data)
+// console.log(scoring_data)
 
 // Grab the locations data via d3.json
 d3.json(locations_data, 
   function(locationsRes)
   {
-    console.log(locationsRes)
+    // console.log(locationsRes)
     // Grab the scoring data via d3.json
     d3.json(scoring_data,
     function(scoringRes)
     {
-    console.log(scoringRes[39])
+    // console.log(scoringRes[39])
 
 // Create a new marker cluster group
 var markers = new L.MarkerClusterGroup({
@@ -46,11 +46,11 @@ for (var i = 0; i < locationsRes.length; i++) {
     // Set the data latitude and longtitude
     var lat = restaurant.lat;
     var lng = restaurant.lng;
-    if(i < restaurant.length/50){
-        console.log(typeof lat);
-        console.log(lat);
-        console.log(restaurant[0]);
-    }
+    // if(i < restaurant.length/50){
+    //     console.log(typeof lat);
+    //     console.log(lat);
+    //     console.log(restaurant[0]);
+    // }
 
     // Check for lat, lng service request property
     if (lat) {
